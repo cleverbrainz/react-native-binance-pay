@@ -15,7 +15,7 @@ import BinancePay from "react-native-binance-pay";
 
 // ...
 
-const result = await BinancePay.multiply(3, 7);
+const result = await BinancePay.pay();
 ```
 
 ## Contributing

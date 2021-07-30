@@ -1,6 +1,6 @@
 {
   "name": "react-native-binance-pay",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "React Native Package for Binance Pay from Native Binance SDKs",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -36,7 +36,10 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/cleverbrainz/react-native-binance-pay",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cleverbrainz/react-native-binance-pay.git"
+  },
   "author": "Tao Zhang <zhangtao820801@gmail.com> (https://github.com/cleverbrainz)",
   "license": "MIT",
   "bugs": {
@@ -77,12 +80,6 @@
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn lint && yarn typescript"
-    }
   },
   "commitlint": {
     "extends": [
@@ -149,5 +146,10 @@
         }
       ]
     ]
-  }
+  },
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "dependencies": {}
 }
