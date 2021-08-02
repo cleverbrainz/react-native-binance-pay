@@ -40,6 +40,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
 
 repositories {
@@ -50,16 +56,12 @@ repositories {
     }
     google()
     jcenter()
-    flatDir {
-      dirs 'libs'
-    }
 }
 
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
     implementation "androidx.cardview:cardview:1.0.0" //need add cardview dependence
-    implementation (name: 'binance_pay_sdk_v1.0.0', ext: 'aar')
-
+    implementation (name: 'binance_pay_sdk_v1.0.1', ext: 'aar')
 }

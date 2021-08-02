@@ -12,33 +12,35 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
-import com.facebook.react.uimanager.annotations.ReactProp;
 
 @ReactModule(name = BinancePayModule.NAME)
 public class BinancePayModule extends ReactContextBaseJavaModule {
-    public static final String NAME = "BinancePay";
+  public static final String NAME = "BinancePay";
 
-    BinancePay binancePay;
-    BinancePayParam binancePayParam;
+  BinancePay binancePay;
+  BinancePayParam binancePayParam;
 
-    public BinancePayModule(ReactApplicationContext reactContext) {
-        super(reactContext);
-        binancePay = new BinancePayFactory.Companion().getBinancePay(reactContext);
-    }
+  public BinancePayModule(ReactApplicationContext reactContext) {
+      super(reactContext);
+      binancePay = new BinancePayFactory.Companion().getBinancePay(reactContext);
+  }
 
-    @Override
-    @NonNull
-    public String getName() {
-        return NAME;
-    }
+  @Override
+  @NonNull
+  public String getName() {
+      return NAME;
+  }
 
-    @ReactMethod
-    public void initBinancePayParam(String merchantId, String prepayId, String timeStamp, String nonceStr, String certSn, String sign) {
-      binancePayParam = new BinancePayParam(merchantId, prepayId, timeStamp, nonceStr, certSn, sign);
-    }
+  // Init Binance Payment Parameters
+  @ReactMethod
+  public void initBinancePayParam(String merchantId, String prepayId, String timeStamp, String nonceStr, String certSn, String sign) {
+    binancePayParam = new BinancePayParam(merchantId, prepayId, timeStamp, nonceStr, certSn, sign);
+  }
 
-    @ReactMethod
-    public void makePayment(Promise promise) {
+  // Make Binance Payment Pay
+  @ReactMethod
+  public void makePayment(Promise promise) {
+    try {
       binancePay.pay(binancePayParam, new BinancePayListener() {
         @Override
         public void onSuccess() {
@@ -52,17 +54,11 @@ public class BinancePayModule extends ReactContextBaseJavaModule {
 
         @Override
         public void onError(BinancePayException e) {
-          promise.resolve(e.getLocalizedMessage());
+          promise.reject("Binance Pay Failed", e);
         }
       });
+    } catch (Exception e) {
+      promise.reject("Binance Pay Failed", e);
     }
-
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
-    @ReactMethod
-    public void multiply(int a, int b, Promise promise) {
-        promise.resolve(a * b);
-    }
-
-    public static native int nativeMultiply(int a, int b);
+  }
 }
