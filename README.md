@@ -26,18 +26,10 @@ npm install react-native-binance-pay
    ```
     implementation project(':react-native-binance-pay')
    ```
-4. Insert the following lines inside the android block in `android/app/build.gradle`:
-   ```
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
-   ```
-5. Download the binance_pay_sdk_V1.0.1.aar file from [here](https://github.com/cleverbrainz/react-native-binance-pay/blob/master/android/libs/binance_pay_sdk_v1.0.1.aar) and paste to `android/app/libs/` folder
 
 #### iOS dependencies
 
+- In Progress (Coming Soon)
 
 ## Usage
 
