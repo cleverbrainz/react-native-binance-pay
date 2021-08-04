@@ -1,0 +1,11 @@
+framework module BinancePaySDK {
+  umbrella header "BinancePaySDK.h"
+
+  export *
+  module * { export * }
+}
+
+module BinancePaySDK.Swift {
+    header "BinancePaySDK-Swift.h"
+    requires objc
+}

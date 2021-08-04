@@ -63,5 +63,4 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation fileTree(include: ['*.aar'], dir: 'libs')
     implementation "androidx.cardview:cardview:1.0.0" //need add cardview dependence
-    implementation (name: 'binance_pay_sdk_v1.0.1', ext: 'aar')
 }

@@ -1,0 +1,7 @@
+{
+    "pay.sdk.alert.notInstalled": "You have not installed the Binance App. Install now?",
+    "pay.sdk.alert.notSupported": "Your app version is not up to date. Please update to the latest version.",
+    "pay.sdk.install": "Install",
+    "pay.sdk.cancel": "Cancel",
+    "pay.sdk.update": "Update"
+}

@@ -1,0 +1,83 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name BinancePaySDK
+@_exported import BinancePaySDK
+import Foundation
+import Swift
+import UIKit
+public enum Language {
+  case english
+  case chinese
+  public init?(languageCode: Swift.String)
+  public func languageCode() -> Swift.String
+  public func toFrontendLanguageCode() -> Swift.String
+  public static func == (a: BinancePaySDK.Language, b: BinancePaySDK.Language) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public enum languageMode {
+  case automatic
+  case manual(Language: BinancePaySDK.Language)
+}
+@_hasMissingDesignatedInitializers public class BinancePay {
+  public enum Mode : Swift.Int {
+    case dev
+    case qa
+    case production
+    public typealias RawValue = Swift.Int
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public static let shared: BinancePaySDK.BinancePay
+  public var isLogEnabled: Swift.Bool {
+    get
+    set
+  }
+  public var languageMode: BinancePaySDK.languageMode {
+    get
+    set
+  }
+  public func pay(with parameters: BinancePaySDK.OrderInitParameters, containerView: UIKit.UIView, callback: ((Swift.Result<Swift.Void, BinancePaySDK.PayError>) -> Swift.Void)?)
+  public func testPay(with parameters: BinancePaySDK.OrderInitParameters, containerView: UIKit.UIView, callback: ((Swift.Result<Swift.Void, BinancePaySDK.PayError>) -> Swift.Void)?)
+  public func handle(openURL: Foundation.URL) -> Swift.Bool
+  @objc deinit
+}
+extension BinancePay {
+  public func isAppInstalled() -> Swift.Bool
+  public func isPaySupported() -> Swift.Bool
+}
+public enum PayError : Swift.Error {
+  case invalidParameters(BinancePaySDK.OrderInitParametersError)
+  case binanceAppNotInstalled
+  case binanceAppNotSupported
+  case openAppFailed
+  case fromBinanceApp(code: Swift.Int, message: Swift.String)
+}
+public enum OrderInitParametersError : Swift.Error {
+  case invalidMerchantId
+  case invalidPrepayId
+  case invalidTimestamp
+  case invalidNonceStr
+  case invalidCertSn
+  case invalidSign
+  case invalidRedirectScheme
+  public static func == (a: BinancePaySDK.OrderInitParametersError, b: BinancePaySDK.OrderInitParametersError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public struct OrderInitParameters {
+  public init(merchantId: Swift.String, prepayId: Swift.String, timestamp: Swift.Int64, noncestr: Swift.String, certSn: Swift.String, sign: Swift.String, redirectScheme: Swift.String)
+}
+extension BinancePaySDK.Language : Swift.Equatable {}
+extension BinancePaySDK.Language : Swift.Hashable {}
+extension BinancePaySDK.BinancePay.Mode : Swift.Equatable {}
+extension BinancePaySDK.BinancePay.Mode : Swift.Hashable {}
+extension BinancePaySDK.BinancePay.Mode : Swift.RawRepresentable {}
+extension BinancePaySDK.OrderInitParametersError : Swift.Equatable {}
+extension BinancePaySDK.OrderInitParametersError : Swift.Hashable {}
